@@ -13,9 +13,10 @@ namespace TopGun
         private Collider _hitBox ;
         private int _ammo;
         private int _hp;
-        public void Shoot(int speedX, int speedY)
+        public Bullet Shoot(Coordinate ShotDir)
         {
-            Bullet b = new Bullet(speedX, speedY,5,1,new Coordinate (this._position.X,this._position.Y));
+            Bullet b = new Bullet(5,5,new Coordinate (ShotDir.X,ShotDir.Y));
+            return b;
         }
         public void InitProperties(int x, int y, int hp,int armor)
         {
@@ -47,26 +48,26 @@ namespace TopGun
 
                 case 1:
                     {
-                        _position.X += 1;
+                        _position.X += 2;
                         break;
                     }
                 case 2:
                     {
-                        _position.X -= 1;
+                        _position.X -= 2;
                         break;
                     }
                 case 3:
                     {
-                        _position.Y += 1;
+                        _position.Y += 2;
                         break;
                     }
                 case 4:
                     {
-                        _position.Y -= 1;
+                        _position.Y -= 2;
                         break;
                     }
             }
-                
+
         }
     }
 

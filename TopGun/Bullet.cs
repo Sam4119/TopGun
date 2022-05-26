@@ -13,14 +13,26 @@ namespace TopGun
         public int Damage { get; set; }
 
         private Coordinate _position;
-        private Collider _hitBox;
+        public Collider HitBox { get; set; }
+        
 
-        public Bullet(int _speedX,int _speedY, int _damage, int Radius,Coordinate center)
+        public Coordinate Position
         {
-            SpeedX = _speedX;
-            SpeedY = _speedY;
+            get
+            {
+                return _position;
+            }
+            set
+            {
+                _position = value;
+            }
+        }
+        public Bullet( int _damage, int Radius,Coordinate center)
+        {
+            SpeedX = 5;
+            SpeedY = 5;
             Damage = _damage;
-            _hitBox = new Collider(Radius, center);
+            HitBox = new Collider(Radius, center);
             _position = new Coordinate(center.X,center.Y);
 
         }

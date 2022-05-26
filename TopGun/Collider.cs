@@ -22,6 +22,7 @@ namespace TopGun
             if (Radius + r < Math.Sqrt(Math.Pow(_position.Y - CY, 2) + Math.Pow(_position.X - CX, 2)))
             {
                 collided = true;
+
             }
 
             return collided;

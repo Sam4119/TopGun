@@ -12,13 +12,15 @@ namespace TopGun
 {
     public partial class Form1 : Form,IView
     {
-        Presenter p;
-        Coordinate BuferPos;
-        Dictionary<int, Coordinate> EnemyPos;
+        private Presenter _p;
+        private Coordinate _buferPosPlayer;
+        private List<(Coordinate,int , int)> _buferBulletPos;
+        private int _r = 0;
+        private Dictionary<int, Coordinate> _buferEnemyPos;
         public Form1()
         {
             InitializeComponent();
-            p = new Presenter(new Model(),this);
+            _p = new Presenter(new Model(),this);
             tmrFPS.Interval = 17;
             tmrFPS.Start();
         }
@@ -28,38 +30,47 @@ namespace TopGun
         public event EventHandler <DirectionEventArgs> MovingPlayer;
 
 
-        public void Render(Coordinate coordPlayer, Dictionary<int, Coordinate> coordEnemy)
+        public void Render(Coordinate coordPlayer, Dictionary<int, Coordinate> coordEnemy, List<(Coordinate,int,int)> coordBullet,int radius)
         {
-            EnemyPos = coordEnemy;
-            BuferPos = coordPlayer;
+            _r = radius;
+            _buferBulletPos = coordBullet;
+            _buferEnemyPos = coordEnemy;
+            _buferPosPlayer = coordPlayer;
             this.Refresh();
         }
         private void PaintGame(object sender,PaintEventArgs e)
         {
             Graphics g = e.Graphics;
             g.Clear(Color.White);
+            SolidBrush bulletBrush = new SolidBrush(Color.Pink);
             SolidBrush enemyBrosh = new SolidBrush(Color.Red);
             SolidBrush solidBrush = new SolidBrush(Color.Black);
-            if(BuferPos!=null)
+            if(_buferPosPlayer!=null)
             {
-                g.FillRectangle(solidBrush, BuferPos.X, BuferPos.Y, 50, 50);
+                g.FillRectangle(solidBrush, _buferPosPlayer.X, _buferPosPlayer.Y, 50, 50);
             }
-            if(EnemyPos!= null)
+            if(_buferEnemyPos!= null)
             {
-                foreach(var r in EnemyPos)
+                foreach(var r in _buferEnemyPos)
                 {
                     g.FillRectangle(enemyBrosh,r.Value.X, r.Value.Y, 50, 50);
                 }
-                
             }
-            
-
+            if(_buferBulletPos!=null)
+            {
+                foreach (var b in _buferBulletPos)
+                {
+                    {
+                        g.FillRectangle(bulletBrush, b.Item1.X, b.Item1.Y, 5, 5);
+                    }
+                }
+                //g.FillRectangle(bulletBrush, BulletPos.X, BulletPos.Y, R, R);
+            }
         }
+
         private void tmrFPS_Tick(object sender, EventArgs e)
         {
-
             OnUpdate.Invoke(this, new EventArgs());
-           
         }
         private void KeyPressControl(object sender, KeyPressEventArgs e)
         {
@@ -79,7 +90,12 @@ namespace TopGun
             {
                 MovingPlayer.Invoke(this, new DirectionEventArgs() { Direction = 4 });
             }
-
         }
+        private void MouseClicks(object sender, MouseEventArgs e)
+        {
+            Shoot.Invoke(this, new EventArgs());
+        }
+
+        
     }
 }
