@@ -21,9 +21,14 @@ namespace TopGun
         {
             _player.MovePlayer(dir);
         }
-        public void Shoot(Coordinate coordinate)//передай данные отсюда
+        public void Shoot(int MouseX, int MouseY)//передай данные отсюда
         {
-            _bufBullet.Add(_player.Shoot(coordinate));
+            double pX = MouseX - _player.Position.X;
+            double pY = MouseY - _player.Position.Y;
+            double Module = Math.Sqrt(pX * pX + pY * pY);
+            double MX = pX / (Module);
+            double MY = pY / (Module);
+            _bufBullet.Add(_player.Shoot(MX,MY));
         }
         public void BulletMove()
         {
@@ -49,7 +54,7 @@ namespace TopGun
         {
             CreatePlayer();
 
-            for (int i = 0; i <= 5; i++)
+            for (int i = 0; i <= 1; i++)
             {
                 int enemyX = _random.Next(10, 1000);
                 int enemyY = _random.Next(10, 700);
@@ -63,7 +68,6 @@ namespace TopGun
             if(_bufBullet!=null)
             {
                 BulletMove();
-
             }
             
             _bufCoords.Clear();//дубляж кода и update и moveplayer отрисовывает
@@ -83,15 +87,28 @@ namespace TopGun
                 int R = b.r;
                 int d = b.d;
             }
-            //foreach (var bullet in BulletPropeties)
+            List<Bullet> deleteBullet = new List<Bullet>();
+            List<int> deleteEnemys = new List<int>();
+            foreach (var CB in _bufBullet)
+            {
+                foreach(var CE in _enemys)
+                {
+                    if(CB.HitBox.IsCollided(CE.Value.HitBox.Radius, CE.Value.Position.X, CE.Value.Position.Y))
+                    {
+                        deleteBullet.Add(CB);
+                        deleteEnemys.Add(CE.Key);
+                    }
+                }
 
-            //{
-            //    _collider = new Collider(bullet);
-            //    if (_collider.IsCollided(bullet.r, bullet.pos.X, bullet.pos.Y) == true)
-            //    {
-
-            //    }
-            //}
+            }
+            foreach(var DB in deleteBullet)
+            {
+                _bufBullet.Remove(DB);
+            }
+            foreach(var ED in deleteEnemys)
+            {
+                _enemys.Remove(ED);
+            }
 
             Updated.Invoke(this, new OutputCoordinate()
             {

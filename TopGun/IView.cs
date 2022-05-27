@@ -8,12 +8,19 @@ namespace TopGun
 {
     public interface IView
     {
-        event EventHandler  Shoot;//<ShootEventArgs >
+        event EventHandler <CoordinateEventArgs> Shoot;//<ShootEventArgs >
         event EventHandler OnUpdate;
         event EventHandler <DirectionEventArgs> MovingPlayer;
         void Render(Coordinate coordPlayer, Dictionary<int,Coordinate> coordEnemy, List <(Coordinate, int ,int )> coordBullet, int radius);
         //изменить в соответствии со списком в модели
     }
+
+    public class CoordinateEventArgs
+    {
+        public int MouseX { get; set; }
+        public int MouseY { get; set; }
+    }
+
     //public class ShootEventArgs
     //{
     //    public Coordinate dir { get; set; }

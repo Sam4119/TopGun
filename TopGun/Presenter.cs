@@ -25,9 +25,9 @@ namespace TopGun
 
         }
 
-        private void ViewModelShoot(object sender, EventArgs e)
+        private void ViewModelShoot(object sender, CoordinateEventArgs e)
         {
-            model.Shoot(coordinateShotDir:e.dir);// сюда должны приходить координаты игрока
+            model.Shoot(e.MouseX,e.MouseY);// сюда должны приходить координаты игрока
         }
 
         private void ViewModelMovingPlayer(object sender, DirectionEventArgs e)

@@ -13,9 +13,11 @@ namespace TopGun
         private Collider _hitBox ;
         private int _ammo;
         private int _hp;
-        public Bullet Shoot(Coordinate ShotDir)
+        public Collider HitBox { get { return _hitBox; } set { _hitBox = value; } }
+
+        public Bullet Shoot(double SpeedX,double SpeedY)
         {
-            Bullet b = new Bullet(5,5,new Coordinate (ShotDir.X,ShotDir.Y));
+            Bullet b = new Bullet(SpeedX , SpeedY , 5, 5, _position);
             return b;
         }
         public void InitProperties(int x, int y, int hp,int armor)

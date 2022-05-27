@@ -8,9 +8,9 @@ namespace TopGun
 {
     public class Coordinate
     {
-        public int X { get; set; }
-        public int Y { get; set; }
-        public Coordinate(int X, int Y)
+        public double X { get; set; }
+        public double Y { get; set; }
+        public Coordinate(double X, double Y)
         {
             this.X = X;
             this.Y = Y;

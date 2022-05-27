@@ -11,7 +11,7 @@ namespace TopGun
         void Update();
         event EventHandler <OutputCoordinate> Updated;
         void MovePlayer(int dir );
-        void Shoot(Coordinate coordinateShotDir);
+        void Shoot(int MouseX, int MouseY);
     }
     
     public class OutputCoordinate

@@ -8,9 +8,10 @@ namespace TopGun
 {
     class Bullet
     {
-        public int SpeedX { get; set; }
-        public int SpeedY { get; set; }
+        public double SpeedX { get; set; }
+        public double SpeedY { get; set; }
         public int Damage { get; set; }
+        
 
         private Coordinate _position;
         public Collider HitBox { get; set; }
@@ -27,13 +28,13 @@ namespace TopGun
                 _position = value;
             }
         }
-        public Bullet( int _damage, int Radius,Coordinate center)
+        public Bullet( double x ,double y, int _damage, int Radius,Coordinate center)
         {
-            SpeedX = 5;
-            SpeedY = 5;
+            SpeedX = 5*x;
+            SpeedY = 5*y;
             Damage = _damage;
             HitBox = new Collider(Radius, center);
-            _position = new Coordinate(center.X,center.Y);
+            _position = new Coordinate(center.X + 25 ,center.Y + 25);
 
         }
     }

@@ -25,7 +25,7 @@ namespace TopGun
             tmrFPS.Start();
         }
 
-        public event EventHandler Shoot = delegate { };
+        public event EventHandler <CoordinateEventArgs> Shoot = delegate { };
         public event EventHandler OnUpdate = delegate { };
         public event EventHandler <DirectionEventArgs> MovingPlayer;
 
@@ -47,13 +47,13 @@ namespace TopGun
             SolidBrush solidBrush = new SolidBrush(Color.Black);
             if(_buferPosPlayer!=null)
             {
-                g.FillRectangle(solidBrush, _buferPosPlayer.X, _buferPosPlayer.Y, 50, 50);
+                g.FillRectangle(solidBrush, (float)_buferPosPlayer.X, (float)_buferPosPlayer.Y, 50, 50);
             }
             if(_buferEnemyPos!= null)
             {
                 foreach(var r in _buferEnemyPos)
                 {
-                    g.FillRectangle(enemyBrosh,r.Value.X, r.Value.Y, 50, 50);
+                    g.FillRectangle(enemyBrosh, (float)r.Value.X, (float)r.Value.Y, 50, 50);
                 }
             }
             if(_buferBulletPos!=null)
@@ -61,7 +61,7 @@ namespace TopGun
                 foreach (var b in _buferBulletPos)
                 {
                     {
-                        g.FillRectangle(bulletBrush, b.Item1.X, b.Item1.Y, 5, 5);
+                        g.FillRectangle(bulletBrush, (float)b.Item1.X, (float)b.Item1.Y, 5, 5);
                     }
                 }
                 //g.FillRectangle(bulletBrush, BulletPos.X, BulletPos.Y, R, R);
@@ -93,7 +93,9 @@ namespace TopGun
         }
         private void MouseClicks(object sender, MouseEventArgs e)
         {
-            Shoot.Invoke(this, new EventArgs());
+            int MouseX = e.X;
+            int MouseY = e.Y;
+            Shoot.Invoke(this, new CoordinateEventArgs() { MouseX = e.X, MouseY = e.Y});
         }
 
         
