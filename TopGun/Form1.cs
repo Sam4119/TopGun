@@ -14,7 +14,7 @@ namespace TopGun
     {
         private Presenter _p;
         private Coordinate _buferPosPlayer;
-        private List<(Coordinate,int , int)> _buferBulletPos;
+        private List<(Coordinate,double , int)> _buferBulletPos;
         private int _r = 0;
         private Dictionary<int, Coordinate> _buferEnemyPos;
         public Form1()
@@ -30,7 +30,7 @@ namespace TopGun
         public event EventHandler <DirectionEventArgs> MovingPlayer;
 
 
-        public void Render(Coordinate coordPlayer, Dictionary<int, Coordinate> coordEnemy, List<(Coordinate,int,int)> coordBullet,int radius)
+        public void Render(Coordinate coordPlayer, Dictionary<int, Coordinate> coordEnemy, List<(Coordinate,double,int)> coordBullet,int radius)
         {
             _r = radius;
             _buferBulletPos = coordBullet;
@@ -53,7 +53,8 @@ namespace TopGun
             {
                 foreach(var r in _buferEnemyPos)
                 {
-                    g.FillRectangle(enemyBrosh, (float)r.Value.X, (float)r.Value.Y, 50, 50);
+                    // g.FillRectangle(enemyBrosh, (float)r.Value.X, (float)r.Value.Y, 50, 50);
+                    g.DrawEllipse(new Pen(Color.Black, 2.0f), (float)r.Value.X -25 , (float)r.Value.Y- 25 , 50, 50);
                 }
             }
             if(_buferBulletPos!=null)
@@ -61,7 +62,7 @@ namespace TopGun
                 foreach (var b in _buferBulletPos)
                 {
                     {
-                        g.FillRectangle(bulletBrush, (float)b.Item1.X, (float)b.Item1.Y, 5, 5);
+                        g.FillRectangle(bulletBrush, (float)b.Item1.X - 2.5f, (float)b.Item1.Y-2.5f, 5, 5);
                     }
                 }
                 //g.FillRectangle(bulletBrush, BulletPos.X, BulletPos.Y, R, R);
