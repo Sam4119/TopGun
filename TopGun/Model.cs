@@ -54,7 +54,7 @@ namespace TopGun
         {
             CreatePlayer();
 
-            for (int i = 0; i <= 1; i++)
+            for (int i = 0; i <= 4; i++)
             {
                 int enemyX = _random.Next(10, 1000);
                 int enemyY = _random.Next(10, 700);

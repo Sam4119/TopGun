@@ -31,7 +31,7 @@ namespace TopGun
         public void MoveBullet(double x, double y)
         {
             _position = new Coordinate(x , y );
-            HitBox.Position = new Coordinate(x+2.5, y+2.5);
+            HitBox.Position = new Coordinate(x+25, y+25);
         }
         public Bullet( double x ,double y, int _damage, double Radius,Coordinate center)
         {
