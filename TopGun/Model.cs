@@ -11,7 +11,7 @@ namespace TopGun
         private Dictionary<int, Character> _enemys = new Dictionary<int, Character>();
         private Character _player;
         private Dictionary<int, Coordinate> _bufCoords = new Dictionary<int, Coordinate>();
-        private Collider _collider;
+        private int _countBullet;
         private int _id = 0;
         private List<Bullet> _bufBullet = new List<Bullet>();
         private Random _random = new Random();
@@ -28,7 +28,12 @@ namespace TopGun
             double Module = Math.Sqrt(pX * pX + pY * pY);
             double MX = pX / (Module);
             double MY = pY / (Module);
+            _countBullet++;
             _bufBullet.Add(_player.Shoot(MX, MY));
+            if (_countBullet == 10)
+            {
+                
+            }//здесь сейчас хародкод, переделать под кол-во патронов в разном оружии
         }
         //public void BulletMove()
         //{
@@ -117,10 +122,11 @@ namespace TopGun
             {
                 _enemys.Remove(ED);
             }
-            
 
+            int count = _enemys.Count();
             Updated.Invoke(this, new OutputCoordinate()
             {
+                Count = count,
                 CoordinatePlayer = _player.Position,
                 CoordinateEnemy = _bufCoords,
                 CoordinateBullet = BulletPropeties,// поправить это

@@ -16,7 +16,7 @@ namespace TopGun
     
     public class OutputCoordinate
     {
-        
+        public int Count { get; set; }
         public Coordinate CoordinatePlayer { get; set; }
         public Dictionary <int, Coordinate> CoordinateEnemy { get; set; }
         public List <(Coordinate pos, double , int )> CoordinateBullet { get; set; }

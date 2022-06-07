@@ -11,7 +11,7 @@ namespace TopGun
         event EventHandler <CoordinateEventArgs> Shoot;//<ShootEventArgs >
         event EventHandler OnUpdate;
         event EventHandler <DirectionEventArgs> MovingPlayer;
-        void Render(Coordinate coordPlayer, Dictionary<int,Coordinate> coordEnemy, List <(Coordinate, double ,int )> coordBullet, int radius);
+        void Render(int Count,Coordinate coordPlayer, Dictionary<int,Coordinate> coordEnemy, List <(Coordinate, double ,int )> coordBullet, int radius);
         //изменить в соответствии со списком в модели
     }
 

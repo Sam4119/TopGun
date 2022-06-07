@@ -12,6 +12,7 @@ namespace TopGun
 {
     public partial class Form1 : Form,IView
     {
+        private int _count;
         private Presenter _p;
         private Coordinate _buferPosPlayer;
         private List<(Coordinate,double , int)> _buferBulletPos;
@@ -30,8 +31,9 @@ namespace TopGun
         public event EventHandler <DirectionEventArgs> MovingPlayer;
 
 
-        public void Render(Coordinate coordPlayer, Dictionary<int, Coordinate> coordEnemy, List<(Coordinate,double,int)> coordBullet,int radius)
+        public void Render(int Count, Coordinate coordPlayer, Dictionary<int, Coordinate> coordEnemy, List<(Coordinate,double,int)> coordBullet,int radius)
         {
+            _count = Count;
             _r = radius;
             _buferBulletPos = coordBullet;
             _buferEnemyPos = coordEnemy;
@@ -67,6 +69,7 @@ namespace TopGun
                 }
                 //g.FillRectangle(bulletBrush, BulletPos.X, BulletPos.Y, R, R);
             }
+            lblCount.Text = @"Врагов на карте:" + _count.ToString();
         }
 
         private void tmrFPS_Tick(object sender, EventArgs e)
@@ -94,6 +97,7 @@ namespace TopGun
         }
         private void MouseClicks(object sender, MouseEventArgs e)
         {
+
             int MouseX = e.X;
             int MouseY = e.Y;
             Shoot.Invoke(this, new CoordinateEventArgs() { MouseX = e.X, MouseY = e.Y});

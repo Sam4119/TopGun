@@ -32,6 +32,7 @@ namespace TopGun
             this.components = new System.ComponentModel.Container();
             this.tmrFPS = new System.Windows.Forms.Timer(this.components);
             this.pbxField = new System.Windows.Forms.PictureBox();
+            this.lblCount = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbxField)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,17 +53,29 @@ namespace TopGun
             this.pbxField.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGame);
             this.pbxField.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MouseClicks);
             // 
+            // lblCount
+            // 
+            this.lblCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCount.AutoSize = true;
+            this.lblCount.Location = new System.Drawing.Point(653, 9);
+            this.lblCount.Name = "lblCount";
+            this.lblCount.Size = new System.Drawing.Size(46, 17);
+            this.lblCount.TabIndex = 1;
+            this.lblCount.Text = "label1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblCount);
             this.Controls.Add(this.pbxField);
             this.Name = "Form1";
             this.Text = "Form1";
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeyPressControl);
             ((System.ComponentModel.ISupportInitialize)(this.pbxField)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -70,6 +83,7 @@ namespace TopGun
 
         private System.Windows.Forms.Timer tmrFPS;
         private System.Windows.Forms.PictureBox pbxField;
+        private System.Windows.Forms.Label lblCount;
     }
 }
 
