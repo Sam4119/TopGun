@@ -8,20 +8,38 @@ namespace TopGun
 {
     class Bullet
     {
-        public int SpeedX { get; set; }
-        public int SpeedY { get; set; }
+        public double SpeedX { get; set; }
+        public double SpeedY { get; set; }
         public int Damage { get; set; }
+        
 
         private Coordinate _position;
-        private Collider _hitBox;
+        public Collider HitBox { get; set; }
+        
 
-        public Bullet(int _speedX,int _speedY, int _damage, int Radius,Coordinate center)
+        public Coordinate Position
         {
-            SpeedX = _speedX;
-            SpeedY = _speedY;
+            get
+            {
+                return _position;
+            }
+            set
+            {
+                _position = value;
+            }
+        }
+        public void MoveBullet(double x, double y)
+        {
+            _position = new Coordinate(x , y );
+            HitBox.Position = new Coordinate(x+2.5, y+2.5);
+        }
+        public Bullet( double x ,double y, int _damage, double Radius,Coordinate center)
+        {
+            SpeedX = 10*x;
+            SpeedY = 10*y;
             Damage = _damage;
-            _hitBox = new Collider(Radius, center);
-            _position = new Coordinate(center.X,center.Y);
+            HitBox = new Collider(Radius,new Coordinate(center.X + 2.5, center.Y + 2.5));
+            _position = center;
 
         }
     }

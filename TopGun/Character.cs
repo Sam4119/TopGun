@@ -8,23 +8,26 @@ namespace TopGun
 {
     class Character
     {
-        private Coordinate _position ;
-       
-        private Collider _hitBox ;
+        private Coordinate _position;
+
+        private Collider _hitBox;
         private int _ammo;
         private int _hp;
-        public void Shoot(int speedX, int speedY)
+        public Collider HitBox { get { return _hitBox; } set { _hitBox = value; } }
+
+        public Bullet Shoot(double SpeedX, double SpeedY)
         {
-            Bullet b = new Bullet(speedX, speedY,5,1,new Coordinate (this._position.X,this._position.Y));
+            Bullet b = new Bullet(SpeedX, SpeedY, 5, 2.5, _position);
+            return b;
         }
-        public void InitProperties(int x, int y, int hp,int armor)
+        public void InitProperties(int x, int y, int hp, int armor)
         {
             _position = new Coordinate(x, y);
             _hp = hp;
             _ammo = armor;
-            _hitBox = new Collider(10, _position);
+            _hitBox = new Collider(25, new Coordinate(_position.X + 25, _position.Y + 25));
         }
-        
+
         public Coordinate Position
         {
             get
@@ -32,8 +35,8 @@ namespace TopGun
                 return _position;
             }
             set
-            { 
-                _position = value; 
+            {
+                _position = value;
             }
         }
         //public void ChangeProperties(Coordinate coordinate, int hp,int ammo)
@@ -47,26 +50,26 @@ namespace TopGun
 
                 case 1:
                     {
-                        _position.X += 1;
+                        _position.X += 2;
                         break;
                     }
                 case 2:
                     {
-                        _position.X -= 1;
+                        _position.X -= 2;
                         break;
                     }
                 case 3:
                     {
-                        _position.Y += 1;
+                        _position.Y += 2;
                         break;
                     }
                 case 4:
                     {
-                        _position.Y -= 1;
+                        _position.Y -= 2;
                         break;
                     }
             }
-                
+
         }
     }
 

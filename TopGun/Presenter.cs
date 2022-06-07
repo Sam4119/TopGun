@@ -21,7 +21,13 @@ namespace TopGun
             //после Update в модели, запускается обработчик презентера и
             //у view срабатывает 
             this.view.MovingPlayer += ViewModelMovingPlayer;
+            this.view.Shoot += ViewModelShoot;
 
+        }
+
+        private void ViewModelShoot(object sender, CoordinateEventArgs e)
+        {
+            model.Shoot(e.MouseX,e.MouseY);// сюда должны приходить координаты игрока
         }
 
         private void ViewModelMovingPlayer(object sender, DirectionEventArgs e)
@@ -32,7 +38,7 @@ namespace TopGun
 
         private void ModelViewUpdate(object sender, OutputCoordinate e)
         {
-            view.Render(coordPlayer:e.CoordinatePlayer,coordEnemy:e.CoordinateEnemy);//
+            view.Render(coordPlayer:e.CoordinatePlayer,coordEnemy:e.CoordinateEnemy,e.CoordinateBullet,e.Radius);//
         }
 
         private void ViewModelOnUpdate(object sender, EventArgs e)

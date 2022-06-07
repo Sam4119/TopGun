@@ -8,22 +8,22 @@ namespace TopGun
 {
     class Collider
     {
-        public int Radius { get; set; }
-        private Coordinate _position;
-        public Collider(int Radius,Coordinate coordinate)
+        public double Radius { get; set; }
+        public Coordinate Position;
+        public Collider(double Radius,Coordinate coordinate)
         {
             this.Radius = Radius;
-            this._position = coordinate;
+            this.Position = coordinate;
         }
         
-        public bool IsCollided(int r, int CY,int CX)  
+        public bool IsCollided(double r, double CX,double CY)  
         {
             bool collided = false;
-            if (Radius + r < Math.Sqrt(Math.Pow(_position.Y - CY, 2) + Math.Pow(_position.X - CX, 2)))
+            if (Radius + r >= Math.Sqrt(Math.Pow(Position.Y - CY, 2) + Math.Pow(Position.X - CX, 2)))
             {
                 collided = true;
             }
-
+            //решить проблему с геометрией
             return collided;
         }
     }
