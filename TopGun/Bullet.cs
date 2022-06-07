@@ -35,8 +35,8 @@ namespace TopGun
         }
         public Bullet( double x ,double y, int _damage, double Radius,Coordinate center)
         {
-            SpeedX = 5*x;
-            SpeedY = 5*y;
+            SpeedX = 10*x;
+            SpeedY = 10*y;
             Damage = _damage;
             HitBox = new Collider(Radius,new Coordinate(center.X + 2.5, center.Y + 2.5));
             _position = center;

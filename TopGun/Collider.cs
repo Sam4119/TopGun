@@ -16,7 +16,7 @@ namespace TopGun
             this.Position = coordinate;
         }
         
-        public bool IsCollided(double r, double CY,double CX)  
+        public bool IsCollided(double r, double CX,double CY)  
         {
             bool collided = false;
             if (Radius + r >= Math.Sqrt(Math.Pow(Position.Y - CY, 2) + Math.Pow(Position.X - CX, 2)))

@@ -11,7 +11,7 @@ namespace TopGun
         private Dictionary<int, Character> _enemys = new Dictionary<int, Character>();
         private Character _player;
         private Dictionary<int, Coordinate> _bufCoords = new Dictionary<int, Coordinate>();
-        private Collider _collider;
+       
         private int _id = 0;
         private List<Bullet> _bufBullet = new List<Bullet>();
         private Random _random = new Random();
@@ -56,15 +56,16 @@ namespace TopGun
 
             for (int i = 0; i <= 1; i++)
             {
-                int enemyX = _random.Next(10, 1000);
-                int enemyY = _random.Next(10, 700);
-                int enemyHealth = _random.Next(10, 25);
-                int enemyArmor = _random.Next(1, 10);
-                CreatEnemy(enemyX, enemyY, enemyHealth, enemyArmor);
+                CreatEnemy(100, 1000, 50, 10);
+                //int enemyX = _random.Next(10, 1000);
+                //int enemyY = _random.Next(10, 700);
+                //int enemyHealth = _random.Next(10, 25);
+                //int enemyArmor = _random.Next(1, 10);
+                //CreatEnemy(enemyX, enemyY, enemyHealth, enemyArmor);
             }
             //CreatEnemy(250, 250, 50, 10);
-            //Bullet nb = new Bullet(1, 0, 10, 5, new Coordinate(0, 245));
-            //_bufBullet.Add(nb);
+            //Bullet nb = new Bullet(1, 0, 10, 5, new Coordinate(0, 265));
+           //_bufBullet.Add(nb);
         }
         public void Update()
         {
