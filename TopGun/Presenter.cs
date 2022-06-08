@@ -38,7 +38,7 @@ namespace TopGun
 
         private void ModelViewUpdate(object sender, OutputCoordinate e)
         {
-            view.Render(e.Count,coordPlayer:e.CoordinatePlayer,coordEnemy:e.CoordinateEnemy,e.CoordinateBullet,e.Radius);//
+            view.Render(e.Count,e.CoordinatePlayer,e.Object,e.Radius);//убрать счетчик
         }
 
         private void ViewModelOnUpdate(object sender, EventArgs e)

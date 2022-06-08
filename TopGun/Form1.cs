@@ -15,9 +15,9 @@ namespace TopGun
         private int _count;
         private Presenter _p;
         private Coordinate _buferPosPlayer;
-        private List<(Coordinate,double , int)> _buferBulletPos;
+       
         private int _r = 0;
-        private Dictionary<int, Coordinate> _buferEnemyPos;
+        private Dictionary<int, IObject> _objects = new Dictionary<int, IObject>();
         public Form1()
         {
             InitializeComponent();
@@ -31,12 +31,12 @@ namespace TopGun
         public event EventHandler <DirectionEventArgs> MovingPlayer;
 
 
-        public void Render(int Count, Coordinate coordPlayer, Dictionary<int, Coordinate> coordEnemy, List<(Coordinate,double,int)> coordBullet,int radius)
+        public void Render(int Count, Coordinate coordPlayer, Dictionary<int, IObject> InputObject,int radius)
         {
             _count = Count;
             _r = radius;
-            _buferBulletPos = coordBullet;
-            _buferEnemyPos = coordEnemy;
+            
+            _objects = InputObject;
             _buferPosPlayer = coordPlayer;
             this.Refresh();
         }
@@ -51,23 +51,17 @@ namespace TopGun
             {
                 g.FillRectangle(solidBrush, (float)_buferPosPlayer.X, (float)_buferPosPlayer.Y, 50, 50);
             }
-            if(_buferEnemyPos!= null)
+            foreach (var r in _objects)
             {
-                foreach(var r in _buferEnemyPos)
+                if(r.Value.Type=="Character")
                 {
-                    // g.FillRectangle(enemyBrosh, (float)r.Value.X, (float)r.Value.Y, 50, 50);
-                    g.DrawEllipse(new Pen(Color.Black, 2.0f), (float)r.Value.X -25 , (float)r.Value.Y- 25 , 50, 50);
+                    g.DrawEllipse(new Pen(Color.Black, 2.0f), (float)r.Value.Position.X - 25, (float)r.Value.Position.Y - 25, 50, 50);
                 }
-            }
-            if(_buferBulletPos!=null)
-            {
-                foreach (var b in _buferBulletPos)
+                if(r.Value.Type == "Bullet")
                 {
-                    {
-                        g.FillRectangle(bulletBrush, (float)b.Item1.X - 2.5f, (float)b.Item1.Y-2.5f, 5, 5);
-                    }
+                    g.FillRectangle(bulletBrush, (float)r.Value.Position.X - 2.5f, (float)r.Value.Position.Y - 2.5f, 5, 5);
                 }
-                //g.FillRectangle(bulletBrush, BulletPos.X, BulletPos.Y, R, R);
+
             }
             lblCount.Text = @"Врагов на карте:" + _count.ToString();
         }

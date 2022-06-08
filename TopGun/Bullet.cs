@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TopGun
 {
-    class Bullet
+    class Bullet:IObject
     {
         public double SpeedX { get; set; }
         public double SpeedY { get; set; }
@@ -23,16 +23,25 @@ namespace TopGun
             {
                 return _position;
             }
-            set
+            private set
             {
                 _position = value;
             }
         }
+
+        public string Type { get; }
+
         public void MoveBullet(double x, double y)
         {
             _position = new Coordinate(x , y );
-            HitBox.Position = new Coordinate(x+25, y+25);
+            HitBox.Position = new Coordinate(x+2.5, y+2.5);
         }
+
+        public void Update()
+        {
+            this.MoveBullet(this.Position.X + this.SpeedX, this.Position.Y + this.SpeedY);
+        }
+
         public Bullet( double x ,double y, int _damage, double Radius,Coordinate center)
         {
             SpeedX = 5*x;
@@ -40,7 +49,7 @@ namespace TopGun
             Damage = _damage;
             HitBox = new Collider(Radius,new Coordinate(center.X + 2.5, center.Y + 2.5));
             _position = center;
-
+            Type = "Bullet";
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TopGun
 {
-    class Character
+    class Character:IObject
     {
         private Coordinate _position;
 
@@ -27,18 +27,24 @@ namespace TopGun
             _ammo = armor;
             _hitBox = new Collider(25, new Coordinate(_position.X + 25, _position.Y + 25));
         }
-
+        public Character()
+        {
+            Type = "Character";
+        }
         public Coordinate Position
         {
             get
             {
                 return _position;
             }
-            set
+            private set
             {
                 _position = value;
             }
         }
+
+        public string Type { get; }
+
         //public void ChangeProperties(Coordinate coordinate, int hp,int ammo)
         //{
         //    _position = coordinate;
@@ -70,6 +76,11 @@ namespace TopGun
                     }
             }
 
+        }
+
+        public void Update()
+        {
+            
         }
     }
 
