@@ -8,3 +8,13 @@ C:\Users\Администратор\source\repos\TopGun\TopGun\obj\Debug\TopGun.
 C:\Users\Администратор\source\repos\TopGun\TopGun\obj\Debug\TopGun.exe
 C:\Users\Администратор\source\repos\TopGun\TopGun\obj\Debug\TopGun.pdb
 C:\Users\Администратор\source\repos\TopGun\TopGun\obj\Debug\TopGun.Form1.resources
+C:\Users\anroh\Source\Repos\TopGun\TopGun\bin\Debug\TopGun.exe.config
+C:\Users\anroh\Source\Repos\TopGun\TopGun\bin\Debug\TopGun.exe
+C:\Users\anroh\Source\Repos\TopGun\TopGun\bin\Debug\TopGun.pdb
+C:\Users\anroh\Source\Repos\TopGun\TopGun\obj\Debug\TopGun.csproj.AssemblyReference.cache
+C:\Users\anroh\Source\Repos\TopGun\TopGun\obj\Debug\TopGun.Form1.resources
+C:\Users\anroh\Source\Repos\TopGun\TopGun\obj\Debug\TopGun.Properties.Resources.resources
+C:\Users\anroh\Source\Repos\TopGun\TopGun\obj\Debug\TopGun.csproj.GenerateResource.cache
+C:\Users\anroh\Source\Repos\TopGun\TopGun\obj\Debug\TopGun.csproj.CoreCompileInputs.cache
+C:\Users\anroh\Source\Repos\TopGun\TopGun\obj\Debug\TopGun.exe
+C:\Users\anroh\Source\Repos\TopGun\TopGun\obj\Debug\TopGun.pdb
